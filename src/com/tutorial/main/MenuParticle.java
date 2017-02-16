@@ -3,18 +3,26 @@ package com.tutorial.main;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.util.Random;
 
-public class FastEnemy extends GameObject {
+public class MenuParticle extends GameObject {
 
 	private Handler handler;
 	
-	public FastEnemy(int x, int y, ID id, Handler handler) {
+	Random r = new Random();
+	private Color color;
+	
+	public MenuParticle(int x, int y, ID id, Handler handler) {
 		super(x, y, id);
 		
 		this.handler = handler;
 		
-		velX = 8;
-		velY = 8;
+		velX = r.nextInt(5) - 5;
+		velY = r.nextInt(5) - 5;
+		if(velX == 0) velX = 4;
+		if(velY == 0) velY = 4;
+		
+		color = new Color(r.nextInt(255), r.nextInt(255), r.nextInt(255));
 	}
 	
 	public Rectangle getBounds() {
@@ -28,11 +36,11 @@ public class FastEnemy extends GameObject {
 		if(y <= 0 || y >= Game.HEIGHT - 32) velY *= -1;
 		if(x <= 0 || x >= Game.WIDTH - 14) velX *= -1;
 		
-		handler.addObject(new Trail(x, y, ID.Trail, Color.cyan, 16, 16, 0.1f, handler));
+		handler.addObject(new Trail(x, y, ID.Trail, color, 16, 16, 0.02f, handler));
 	}
 
 	public void render(Graphics g) {
-		g.setColor(Color.cyan);
+		g.setColor(color);
 		g.fillRect((int) x, (int) y, 16, 16);
 	}
 	
