@@ -8,7 +8,7 @@ public class Spawn {
 	private HUD hud;
 	private Random r = new Random();
 	
-	private int scoreKeep = 0;
+	private int scoreKeep;
 	
 	public Spawn(Handler handler, HUD hud) {
 		this.handler = handler;
@@ -17,7 +17,7 @@ public class Spawn {
 	
 	public void tick() {
 		scoreKeep++;
-		
+		System.out.println(scoreKeep);
 		if(scoreKeep >= 200) {
 			scoreKeep = 0;
 			hud.setLevel(hud.getLevel() + 1);
@@ -39,6 +39,10 @@ public class Spawn {
 				handler.addObject(new BossEnemy(Game.WIDTH/2 - 48, -150, ID.BossEnemy, handler));
 			}
 		}
+	}
+	
+	public void resetScore() {
+		scoreKeep = 0;
 	}
 	
 	

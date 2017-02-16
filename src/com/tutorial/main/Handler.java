@@ -34,10 +34,11 @@ public class Handler {
             GameObject tempObject = object.get(i);
             if(tempObject.getID() != ID.Player){
                 removeObject(tempObject);
-                i --;
+                i--;
             } else {
             	if(Game.gameState == Game.STATE.End) {
             		removeObject(tempObject);
+            		i--;
             	}
             }
         }

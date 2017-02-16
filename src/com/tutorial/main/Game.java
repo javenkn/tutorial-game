@@ -42,10 +42,7 @@ public class Game extends Canvas implements Runnable {
 		spawner = new Spawn(handler, hud);
 		r = new Random();
 		
-		if(gameState == STATE.Game) {
-			handler.addObject(new Player(WIDTH/2 - 32, HEIGHT/2 - 32, ID.Player, handler));
-			handler.addObject(new BasicEnemy(r.nextInt(WIDTH - 50), r.nextInt(HEIGHT - 50), ID.BasicEnemy, handler));
-		} else {
+		if(gameState == STATE.Menu) {
 			for(int i = 0; i < 10; i++) {
 				handler.addObject(new MenuParticle(r.nextInt(WIDTH - 50), r.nextInt(HEIGHT - 50), ID.MenuParticle, handler));
 			}
@@ -107,6 +104,7 @@ public class Game extends Canvas implements Runnable {
 				HUD.HEALTH = 100;
 				gameState = STATE.End;
 				handler.clearEnemies();
+				spawner.resetScore();
 				for(int i = 0; i < 10; i++) {
 					handler.addObject(new MenuParticle(r.nextInt(WIDTH - 50), r.nextInt(HEIGHT - 50), ID.MenuParticle, handler));
 				}

@@ -52,15 +52,20 @@ public class Menu extends MouseAdapter{
 			}
 		}
 		
-		// try again button for help screen
+		// try again button
 		if(Game.gameState == STATE.End) {
-			if(mouseOver(mx, my, 220, 350, 200, 64)) {
+			System.out.println("----------END OF GAME--------");
+			if(mouseOver(mx, my, 220, 250, 200, 64)) {
 				Game.gameState = STATE.Game;
 				hud.setLevel(1);
 				hud.setScore(0);
 				handler.addObject(new Player(Game.WIDTH/2 - 32, Game.HEIGHT/2 - 32, ID.Player, handler));
 				handler.clearEnemies();
 				handler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH - 50), r.nextInt(Game.HEIGHT - 50), ID.BasicEnemy, handler));
+			} else if(mouseOver(mx, my, 220, 350, 200, 64)) {
+				Game.gameState = STATE.Menu;
+				hud.setLevel(1);
+				hud.setScore(0);
 			}
 		}
 	}
@@ -94,11 +99,9 @@ public class Menu extends MouseAdapter{
 			g.drawRect(220, 150, 200, 64);
 			g.drawString("Play", 288, 190);
 			
-			g.setColor(Color.white);
 			g.drawRect(220, 250, 200, 64);
 			g.drawString("Help", 288, 290);
 			
-			g.setColor(Color.white);
 			g.drawRect(220, 350, 200, 64);
 			g.drawString("Quit", 288, 390);
 		} else if(Game.gameState == STATE.Help) {
@@ -130,9 +133,11 @@ public class Menu extends MouseAdapter{
 			g.drawString("You lost with a score of: " + hud.getScore(), 180, 200);
 			
 			g.setFont(font2);
-			g.setColor(Color.white);
+			g.drawRect(220, 250, 200, 64);
+			g.drawString("Try Again", 250, 290);
+			
 			g.drawRect(220, 350, 200, 64);
-			g.drawString("Try Again", 250, 390);
+			g.drawString("Main Menu", 250, 390);
 		}
 	}
 }
