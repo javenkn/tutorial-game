@@ -26,26 +26,26 @@ public class Menu extends MouseAdapter{
 		
 		if(game.gameState == STATE.Menu) {
 			// play button
-			if(mouseOver(mx, my, 217, 150, 200, 64)) {
+			if(mouseOver(mx, my, 220, 150, 200, 64)) {
 				game.gameState = STATE.Game;
 				handler.addObject(new Player(Game.WIDTH/2 - 32, Game.HEIGHT/2 - 32, ID.Player, handler));
 				handler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH - 50), r.nextInt(Game.HEIGHT - 50), ID.BasicEnemy, handler));
 			}
 			
 			// help button
-			if(mouseOver(mx, my, 217, 250, 200, 64)) {
+			if(mouseOver(mx, my, 220, 250, 200, 64)) {
 				game.gameState = STATE.Help;
 			}
 			
 			// quit button
-			if(mouseOver(mx, my, 217, 350, 200, 64)) {
+			if(mouseOver(mx, my, 220, 350, 200, 64)) {
 				System.exit(1);
 			}
 		}
 		
 		// back button for help screen
 		if(game.gameState == STATE.Help) {
-			if(mouseOver(mx, my, 217, 350, 200, 64)) {
+			if(mouseOver(mx, my, 220, 350, 200, 64)) {
 				game.gameState = STATE.Menu;
 				return;
 			}
@@ -75,19 +75,19 @@ public class Menu extends MouseAdapter{
 			
 			g.setFont(font);
 			g.setColor(Color.white);
-			g.drawString("MENU", 240, 70);
+			g.drawString("MENU", 248, 70);
 			
 			g.setFont(font2);
-			g.drawRect(217, 150, 200, 64);
-			g.drawString("Play", 285, 190);
+			g.drawRect(220, 150, 200, 64);
+			g.drawString("Play", 288, 190);
 			
 			g.setColor(Color.white);
-			g.drawRect(217, 250, 200, 64);
-			g.drawString("Help", 285, 290);
+			g.drawRect(220, 250, 200, 64);
+			g.drawString("Help", 288, 290);
 			
 			g.setColor(Color.white);
-			g.drawRect(217, 350, 200, 64);
-			g.drawString("Quit", 285, 390);
+			g.drawRect(220, 350, 200, 64);
+			g.drawString("Quit", 288, 390);
 		} else if(game.gameState == STATE.Help) {
 			Font font = new Font("arial", 1, 50);
 			Font font2 = new Font("arial", 1, 30);
@@ -95,15 +95,15 @@ public class Menu extends MouseAdapter{
 			
 			g.setFont(font);
 			g.setColor(Color.white);
-			g.drawString("HELP", 250, 70);
+			g.drawString("HELP", 248, 70);
 			
 			g.setFont(font3);
-			g.drawString("Use arrow keys to control player and dodge enemies", 50, 200);
+			g.drawString("Use arrow keys to control player and dodge enemies", 65, 200);
 			
 			g.setFont(font2);
 			g.setColor(Color.white);
-			g.drawRect(217, 350, 200, 64);
-			g.drawString("Back", 280, 390);
+			g.drawRect(220, 350, 200, 64);
+			g.drawString("Back", 284, 390);
 		}
 	}
 }
