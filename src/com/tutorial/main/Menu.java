@@ -31,11 +31,14 @@ public class Menu extends MouseAdapter{
 				handler.addObject(new Player(Game.WIDTH/2 - 32, Game.HEIGHT/2 - 32, ID.Player, handler));
 				handler.clearEnemies();
 				handler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH - 50), r.nextInt(Game.HEIGHT - 50), ID.BasicEnemy, handler));
+				
+				AudioPlayer.getSound("sound").play();
 			}
 			
 			// help button
 			if(mouseOver(mx, my, 220, 250, 200, 64)) {
 				Game.gameState = STATE.Help;
+				AudioPlayer.getSound("sound").play();
 			}
 			
 			// quit button
@@ -48,13 +51,13 @@ public class Menu extends MouseAdapter{
 		if(Game.gameState == STATE.Help) {
 			if(mouseOver(mx, my, 220, 350, 200, 64)) {
 				Game.gameState = STATE.Menu;
+				AudioPlayer.getSound("sound").play();
 				return;
 			}
 		}
 		
 		// try again button
 		if(Game.gameState == STATE.End) {
-			System.out.println("----------END OF GAME--------");
 			if(mouseOver(mx, my, 220, 250, 200, 64)) {
 				Game.gameState = STATE.Game;
 				hud.setLevel(1);
@@ -62,10 +65,12 @@ public class Menu extends MouseAdapter{
 				handler.addObject(new Player(Game.WIDTH/2 - 32, Game.HEIGHT/2 - 32, ID.Player, handler));
 				handler.clearEnemies();
 				handler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH - 50), r.nextInt(Game.HEIGHT - 50), ID.BasicEnemy, handler));
+				AudioPlayer.getSound("sound").play();
 			} else if(mouseOver(mx, my, 220, 350, 200, 64)) {
 				Game.gameState = STATE.Menu;
 				hud.setLevel(1);
 				hud.setScore(0);
+				AudioPlayer.getSound("sound").play();
 			}
 		}
 	}

@@ -40,6 +40,13 @@ public class BossEnemy extends GameObject {
 		if(timer <= 0) timer2--;
 		if(timer2 <= 0) {
 			if(velX == 0) velX = 2;
+			
+			if(velX < 0)
+				velX -= 0.005f;
+			else if(velX > 0)
+				velX += 0.005f;
+			velX = Game.clamp(velX, -10, 10);
+			
 			int spawn = r.nextInt(10);
 			if(spawn == 0) handler.addObject(new BossEnemyBullet((int) x + 48, (int) y + 48, ID.BasicEnemy, handler));
 		}
