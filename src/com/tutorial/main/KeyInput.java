@@ -3,6 +3,8 @@ package com.tutorial.main;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
+import com.tutorial.main.Game.STATE;
+
 public class KeyInput extends KeyAdapter{
 	
 	private Handler handler;
@@ -42,6 +44,12 @@ public class KeyInput extends KeyAdapter{
 			} 
 		}
 		
+		if(key == KeyEvent.VK_P) {
+			if(Game.gameState == STATE.Game) {
+				if(Game.paused) Game.paused = false;
+				else Game.paused = true;
+			}
+		}
 		if(key == KeyEvent.VK_ESCAPE) System.exit(1);
 	}
 	

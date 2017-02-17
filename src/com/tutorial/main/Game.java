@@ -14,6 +14,12 @@ public class Game extends Canvas implements Runnable {
 	private Thread thread;
 	private boolean running = false;
 	
+	public static boolean paused = false;
+	public static int diff = 0;
+	
+	// 0 - normal
+	// 1 - hard
+	
 	private Handler handler;
 	private Random r;
 	private HUD hud;
@@ -22,6 +28,7 @@ public class Game extends Canvas implements Runnable {
 	
 	public enum STATE {
 		Menu,
+		Select,
 		Help,
 		Game,
 		End
@@ -98,22 +105,25 @@ public class Game extends Canvas implements Runnable {
 	}
 	
 	private void tick() {
-		handler.tick();
 		if(gameState == STATE.Game) {
-			hud.tick();
-			spawner.tick();
-			
-			if(HUD.HEALTH <= 0) {
-				HUD.HEALTH = 100;
-				gameState = STATE.End;
-				handler.clearEnemies();
-				spawner.resetScore();
-				for(int i = 0; i < 10; i++) {
-					handler.addObject(new MenuParticle(r.nextInt(WIDTH - 50), r.nextInt(HEIGHT - 50), ID.MenuParticle, handler));
+			if(!paused) {
+				handler.tick();
+				hud.tick();
+				spawner.tick();
+				
+				if(HUD.HEALTH <= 0) {
+					HUD.HEALTH = 100;
+					gameState = STATE.End;
+					handler.clearEnemies();
+					spawner.resetScore();
+					for(int i = 0; i < 10; i++) {
+						handler.addObject(new MenuParticle(r.nextInt(WIDTH - 50), r.nextInt(HEIGHT - 50), ID.MenuParticle, handler));
+					}
 				}
 			}
-		} else if(gameState == STATE.Menu || gameState == STATE.End) {
+		} else if(gameState == STATE.Menu || gameState == STATE.Help || gameState == STATE.End || gameState == STATE.Select) {
 			menu.tick();
+			handler.tick();
 		}
 	}
 	
@@ -131,9 +141,14 @@ public class Game extends Canvas implements Runnable {
 		
 		handler.render(g);
 		
+		if(paused) {
+			g.setColor(Color.white);
+			g.drawString("Pause", 100, 100);
+		}
+		
 		if(gameState == STATE.Game) {
 			hud.render(g);
-		} else if(gameState == STATE.Menu || gameState == STATE.Help || gameState == STATE.End) {
+		} else if(gameState == STATE.Menu || gameState == STATE.Help || gameState == STATE.End || gameState == STATE.Select) {
 			menu.render(g);
 		}
 		

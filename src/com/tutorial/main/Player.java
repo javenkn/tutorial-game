@@ -38,8 +38,11 @@ public class Player extends GameObject {
 					// collision code
 					HUD.HEALTH -= 2;
 				}
-			}
-			if(tempObject.getID() == ID.BossEnemy) {
+			} else if(tempObject.getID() == ID.HardEnemy) {
+				if(getBounds().intersects(tempObject.getBounds())) {
+					HUD.HEALTH -= 5;
+				}
+			} else if(tempObject.getID() == ID.BossEnemy) {
 				if(getBounds().intersects(tempObject.getBounds())) {
 					HUD.HEALTH = 0;
 				}
