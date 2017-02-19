@@ -3,10 +3,13 @@ package com.tutorial.main;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+//import java.awt.image.BufferedImage;
 
 public class BasicEnemy extends GameObject {
 
 	private Handler handler;
+	
+//	private BufferedImage enemy_image;
 	
 	public BasicEnemy(int x, int y, ID id, Handler handler) {
 		super(x, y, id);
@@ -15,6 +18,10 @@ public class BasicEnemy extends GameObject {
 		
 		velX = 5;
 		velY = 5;
+		
+//		SpriteSheet ss = new SpriteSheet(Game.sprite_sheet);
+		
+//		enemy_image = ss.grabImage(1, 2, 16, 16);
 	}
 	
 	public Rectangle getBounds() {
@@ -34,6 +41,8 @@ public class BasicEnemy extends GameObject {
 	public void render(Graphics g) {
 		g.setColor(Color.red);
 		g.fillRect((int) x, (int) y, 16, 16);
+		
+//		g.drawImage(enemy_image, (int) x, (int) y, null);
 	}
 	
 }
